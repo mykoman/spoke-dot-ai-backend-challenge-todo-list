@@ -1,3 +1,6 @@
+/**
+ * @description Ensures consistency in error response returned
+ */
 class ApplicationError extends Error {
   status:number;
   message: string;

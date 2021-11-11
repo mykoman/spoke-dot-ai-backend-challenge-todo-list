@@ -1,8 +1,16 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { SuccessResponse } from "../helpers/success-response";
 import { Todo } from "../models/Todo";
 
-export const createTodo = async (req: Request, res: Response, next: NextFunction) => {
+
+/**
+ * @description This creates a todo item
+ * @async
+ * @param {Object} req 
+ * @param {Object} res 
+ * @returns {Object}
+ */
+export const createTodo = async (req: Request, res: Response) => {
   const { name, status } = req.body;
   const todo = Todo.create({
     name,
