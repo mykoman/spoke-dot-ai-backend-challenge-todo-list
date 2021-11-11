@@ -5,6 +5,8 @@
     "rootDir": "./src",                                  
     "moduleResolution": "node",                      
     "outDir": "./dist",                                   
-    "esModuleInterop": true,                             
+    "esModuleInterop": true,   
+    "experimentalDecorators": true,   
+    "emitDecoratorMetadata": true                       
   }
 }
