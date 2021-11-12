@@ -1,4 +1,4 @@
-import { SuccessResponse } from "../../src/helpers/success-response";
+import { SuccessResponse } from "../../helpers/success-response";
 
 describe("test success response class", () => {
   it("should return response with message created and status as done when passed as argument", () => {
