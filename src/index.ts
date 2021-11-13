@@ -1,7 +1,7 @@
 import app from "./app";
 import { config } from "dotenv";
 import { databaseConnection } from "./config/database";
-config();
+config(); 
 const port = process.env.PORT || 3000;
 
 const databaseURL = process.env.DATABASE_URL;
