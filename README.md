@@ -25,10 +25,10 @@ This is a RESTful API for a todo list. Part of an  assessment for [Spoke.AI](htt
 
 - Register a new account.
 - Log in to the created account.
-- Create a todo item
+- Create a todo item (Auth protected)
 - List all todo items in paginated manner and optionally filter the results based on status (created, in-progress, completed)
-- Update a todo item
-- Delete a todo item
+- Update a todo item (Auth protected)
+- Delete a todo item (Auth protected)
 
 ### Folder Structure
 
@@ -152,4 +152,4 @@ npm test
 
 ## Author
 
-- **[Michael Ogbuma](https://github.com/meetKamykomanzuki)** 
+- **[Michael Ogbuma](https://github.com/mykoman)** 

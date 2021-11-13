@@ -104,7 +104,7 @@ export const listTodos = async (req: Request, res: Response) => {
  export const deleteTodoById = async (req: Request, res: Response) => {
   const {id} = req.params;
   let todo = await createQueryBuilder()
-  .select(selectTodoQuery())
+  .select("todos")
   .from(Todo, "todos")
   .where('todos.id = :id', { id: Number(id) })
   .getOne()
