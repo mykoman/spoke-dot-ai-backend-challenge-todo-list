@@ -1,4 +1,5 @@
 import express, {Application, Request, Response, NextFunction} from 'express';
+import { requestLogger } from './helpers/custom-logger';
 import { SuccessResponse } from './helpers/success-response';
 import errorHandler from './middlewares/errorHandler';
 import router from './routes';
@@ -6,7 +7,7 @@ import router from './routes';
 const app: Application = express();
 
 app.use(express.json());
-
+app.use(requestLogger);
 app.use("/api/v1", router)
 
 app.get("/api/v1", (req: Request, res: Response)=>{

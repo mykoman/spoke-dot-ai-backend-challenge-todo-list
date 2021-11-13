@@ -21,7 +21,7 @@
 // 	// })
 // 	beforeAll(async () => {
 // 		// connection = await databaseConnection(testDatabaseURL);
-// 		await testApp().post("/api/v3/users/register").send({
+// 		await testApp().post("/api/v1/users/register").send({
 // 			email,
 // 			password,
 // 		});
