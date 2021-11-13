@@ -1,4 +1,4 @@
-//import request  from 'supertest';
+import request  from 'supertest';
 import { createQueryBuilder } from 'typeorm';
 import { databaseConnection } from '../../config/database';
 import app from '../../app';
