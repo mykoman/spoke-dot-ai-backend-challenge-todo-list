@@ -105,6 +105,7 @@ The API response, to the best of my ability, is structure after JSEnd specificat
 This project uses [Express.js](https://expressjs.com/) v4.17. It has the following dependencies:
 
 - [Node.js `>=` 12.18.3](https://nodejs.org/en/download)
+- [Typescript ](https://www.typescriptlang.org/download)
 - [PostgreSQL Database](https://www.postgresql.org/download/)
 
 
