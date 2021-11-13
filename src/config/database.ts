@@ -1,7 +1,9 @@
 import { createConnection } from 'typeorm';
+import { config } from 'dotenv';
 import { Todo } from '../models/Todo';
 import { User } from '../models/User';
 
+config();
 
 export const databaseConnection = async (databaseURL:string) => {
 	try {
@@ -10,6 +12,7 @@ export const databaseConnection = async (databaseURL:string) => {
 			url: databaseURL,
 			entities: [Todo, User],
 			synchronize: true,
+			ssl: process.env.NODE_ENV === "development" ? false : true
 		});
 		console.log('Connected to Postgres');
 
