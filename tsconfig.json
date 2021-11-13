@@ -9,4 +9,5 @@
     "experimentalDecorators": true,   
     "emitDecoratorMetadata": true                       
   },
+  "exclude" : ["src/__tests__"]
 }
