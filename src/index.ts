@@ -4,7 +4,7 @@ import { databaseConnection } from "./config/database";
 config();
 const port = process.env.PORT || 3000;
 
-const databaseURL = process.env.POSTGRE_URL;
+const databaseURL = process.env.DATABASE_URL;
 databaseConnection(databaseURL);
 
 app.listen(port, ()=>{

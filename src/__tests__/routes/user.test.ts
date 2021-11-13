@@ -14,7 +14,7 @@ describe("The login process", () => {
 	const wrongPassword = "Password1";
 	let response;
 	let connection;
-	const testDatabaseURL = process.env.TEST_POSTGRES_URL
+	const testDatabaseURL = process.env.TEST_DATABASE_URL
 	// it("demo", async()=>{
 	// 	connection = await databaseConnection(testDatabaseURL);
 	// 	expect(1).toBe(1);
