@@ -12,9 +12,9 @@
     "typescript"
   ],
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsc -p .",
+    "build": "tsc -p . && node dist/index.js",
     "test": "jest"
   },
   "author": "Michael Ogbuma",
