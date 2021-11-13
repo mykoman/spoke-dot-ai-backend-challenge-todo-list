@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { Connection, createQueryBuilder } from "typeorm";
 import ApplicationError from "../helpers/error-response";
 import { SuccessResponse } from "../helpers/success-response";
+import { selectTodoQuery } from "../helpers/todo";
 import { Todo } from "../models/Todo";
 
 
@@ -33,18 +34,13 @@ export const createTodo = async (req: Request, res: Response) => {
  * @returns {Object}
  */
 export const listTodos = async (req: Request, res: Response) => {
-  const { skip, limit, filter } = req.query;
-  let query = createQueryBuilder('todos')
-    .select("todos")
+  const { skip = 0, limit = 10, filter } = req.query;
+  let query = createQueryBuilder()
+    .select(selectTodoQuery())
     .from(Todo, "todos")
-
-  if (skip) {
-    query = query.skip(Number(skip));
-  }
-
-  if (limit) {
-    query = query.take(Number(limit));
-  }
+    .where('todos.is_active = true')
+    .skip(Number(skip))
+    .take(Number(limit))
 
   if (filter) {
     query = query.where('todos.status = :filter', { filter })
@@ -53,7 +49,8 @@ export const listTodos = async (req: Request, res: Response) => {
   const [todos, total] = await query.getManyAndCount();
   const data = {
     todos,
-    total
+    total,
+    count: todos.length
   }
 
   const response = new SuccessResponse({ message: "Todo listing was successful", data });
@@ -73,7 +70,11 @@ export const listTodos = async (req: Request, res: Response) => {
  export const updateTodo = async (req: Request, res: Response) => {
   const {id} = req.params;
   const {name, status} = req.body;
-  let todo = await Todo.findOne( Number(id));
+  let todo = await createQueryBuilder()
+  .select(selectTodoQuery())
+  .from(Todo, "todos")
+  .where('todos.id = :id', { id: Number(id) })
+  .getOne()
 
   if(!todo){
     throw new ApplicationError(400, "Todo item not found");
@@ -94,7 +95,7 @@ export const listTodos = async (req: Request, res: Response) => {
 
 
 /**
- * @description Deletes a todo list item by its Id
+ * @description Soft delete/ archieve todo item by ID
  * @async
  * @param {Object} req 
  * @param {Object} res 
@@ -102,14 +103,25 @@ export const listTodos = async (req: Request, res: Response) => {
  */
  export const deleteTodoById = async (req: Request, res: Response) => {
   const {id} = req.params;
-  let todo = await Todo.findOne( Number(id));
+  let todo = await createQueryBuilder()
+  .select(selectTodoQuery())
+  .from(Todo, "todos")
+  .where('todos.id = :id', { id: Number(id) })
+  .getOne()
+  
 
   if(!todo){
     throw new ApplicationError(400, "Todo item not found");
   }
 
-  
-  await todo.remove()
+  if(todo.is_active === false) {
+    throw new ApplicationError(400, "Todo item no longer exists");
+  }
+
+  todo.is_active = false;
+  todo.save();
+
+  //await todo.remove()
 
   const response = new SuccessResponse({ message: "The item was successfully deleted" });
   return res.json(response);
