@@ -12,7 +12,7 @@ export const databaseConnection = async (databaseURL:string) => {
 			url: databaseURL,
 			entities: [Todo, User],
 			synchronize: true,
-			ssl: process.env.NODE_ENV === "development" ? false : true
+			ssl: process.env.NODE_ENV === "development" || process.env.NODE_ENV === "staging" ? false : true
 		});
 		console.log('Connected to Postgres');
 
