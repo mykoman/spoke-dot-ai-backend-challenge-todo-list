@@ -14,7 +14,7 @@
     "scripts": {
         "start": "node dist/index.js",
         "dev": "nodemon src/index.ts",
-        "build": "tsc -p . && node dist/index.js",
+        "build": "tsc -p .",
         "test": "jest --coverage",
         "lint": "eslint . --ext .ts",
         "prettier": "prettier --write .",
