@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Connection, createQueryBuilder } from "typeorm";
+import { createQueryBuilder } from "typeorm";
 import ApplicationError from "../helpers/error-response";
 import { SuccessResponse } from "../helpers/success-response";
 import { selectTodoQuery } from "../helpers/todo";
@@ -70,7 +70,7 @@ export const listTodos = async (req: Request, res: Response) => {
  export const updateTodo = async (req: Request, res: Response) => {
   const {id} = req.params;
   const {name, status} = req.body;
-  let todo = await createQueryBuilder()
+  const todo = await createQueryBuilder()
   .select(selectTodoQuery())
   .from(Todo, "todos")
   .where('todos.id = :id', { id: Number(id) })
@@ -103,7 +103,7 @@ export const listTodos = async (req: Request, res: Response) => {
  */
  export const deleteTodoById = async (req: Request, res: Response) => {
   const {id} = req.params;
-  let todo = await createQueryBuilder()
+  const todo = await createQueryBuilder()
   .select("todos")
   .from(Todo, "todos")
   .where('todos.id = :id', { id: Number(id) })
@@ -120,8 +120,6 @@ export const listTodos = async (req: Request, res: Response) => {
 
   todo.is_active = false;
   todo.save();
-
-  //await todo.remove()
 
   const response = new SuccessResponse({ message: "The item was successfully deleted" });
   return res.json(response);

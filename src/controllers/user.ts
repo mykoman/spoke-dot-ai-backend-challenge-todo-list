@@ -1,4 +1,4 @@
-import express, { Request, Response} from 'express';
+import { Request, Response } from 'express';
 import { createQueryBuilder } from 'typeorm';
 import { checkPasswordMatch, generateJWT, hashPassword } from '../helpers/auth';
 import ApplicationError from '../helpers/error-response';
@@ -11,27 +11,27 @@ import { User } from '../models/User';
  * @returns 
  */
 export const register = async (req: Request, res: Response) => {
-  const {email, name} = req.body;
-  const lowercaseEmail = email.toLowerCase();
+	const { email, name } = req.body;
+	const lowercaseEmail = email.toLowerCase();
 	const doesUserExist = await createQueryBuilder('users')
-  .select("users")
-  .from(User, "users")
-  .where('users.email = :lowercaseEmail', { lowercaseEmail }).getOne();
+		.select("users")
+		.from(User, "users")
+		.where('users.email = :lowercaseEmail', { lowercaseEmail }).getOne();
 
-  if(doesUserExist){
-    throw new ApplicationError(400, "Email already exists, Kindly login instead");
-  }
+	if (doesUserExist) {
+		throw new ApplicationError(400, "Email already exists, Kindly login instead");
+	}
 
 	const password = await hashPassword(req.body.password);
 	const user = User.create({
-    name,
-    email: lowercaseEmail,
-    password 
-  });
-  await user.save();
+		name,
+		email: lowercaseEmail,
+		password
+	});
+	await user.save();
 	const token = await generateJWT({ id: user.id, email: user.email });
 	const data = {
-		 token,
+		token,
 	};
 	const response = new SuccessResponse({ message: "Successfully registered", data });
 	return res.status(200).json(response);
@@ -39,27 +39,27 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req, res) => {
 	const { email, password } = req.body;
-  const lowercaseEmail = email.toLowerCase();
+	const lowercaseEmail = email.toLowerCase();
 	const user = await createQueryBuilder('users')
-  .select("users")
-  .from(User, "users")
-  .where('users.email = :lowercaseEmail', { lowercaseEmail }).getOne()
-  
+		.select("users")
+		.from(User, "users")
+		.where('users.email = :lowercaseEmail', { lowercaseEmail }).getOne()
+
 	if (!user) {
 		throw new ApplicationError(400, "Account not found. Consider creating an account!");
 	}
 
-	const isValid = await checkPasswordMatch(password, user.password );
+	const isValid = await checkPasswordMatch(password, user.password);
 	if (!isValid) {
-    throw new ApplicationError(401, "Invalid email or password!");
+		throw new ApplicationError(401, "Invalid email or password!");
 	}
 
 	const token = await generateJWT({
 		id: user.id,
-    email: lowercaseEmail
+		email: lowercaseEmail
 	});
 	const data = { token };
 
-	const response = new SuccessResponse({message: "Login successful", data});
+	const response = new SuccessResponse({ message: "Login successful", data });
 	return res.status(200).json(response);
 };

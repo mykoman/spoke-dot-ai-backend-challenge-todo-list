@@ -15,7 +15,8 @@
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc -p . && node dist/index.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .ts"
   },
   "author": "Michael Ogbuma",
   "license": "ISC",
@@ -34,6 +35,9 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.7",
     "@types/supertest": "^2.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
     "husky": "^7.0.4",
     "jest": "^27.3.1",
     "nodemon": "^2.0.15",
@@ -46,9 +50,9 @@
     "node": "16.2.0"
   },
   "husky": {
-		"hooks": {
-			"pre-commit": "lint-staged && npm run prettier",
-			"pre-push": "npm test"
-		}
-	}
+    "hooks": {
+      "pre-commit": "lint-staged && npm run prettier",
+      "pre-push": "npm test"
+    }
+  }
 }

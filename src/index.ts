@@ -8,5 +8,5 @@ const port = process.env.PORT || 3000;
       //databaseConnection(databaseURL);
 
 app.listen(port, ()=>{
-  console.log(`App now running on port ${port}`);
+  console.info(`App now running on port ${port}`);
 });

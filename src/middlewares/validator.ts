@@ -1,4 +1,4 @@
-import express, {Request, Response, NextFunction} from 'express';
+import {Request, Response, NextFunction} from 'express';
 import ApplicationError from "../helpers/error-response";
 
 /**
@@ -6,7 +6,7 @@ import ApplicationError from "../helpers/error-response";
  * @param inputFunction Function function by joi to run validation on input parameters
  * @returns Object 
  */
-export const validate = (inputFunction: Function) => {
+export const validate = (inputFunction) => {
   return (req:Request, res: Response, next: NextFunction) => {
 		const { error } = inputFunction(req.body);
     

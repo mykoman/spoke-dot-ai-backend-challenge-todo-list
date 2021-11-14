@@ -22,8 +22,4 @@ describe("Fetching of todo items from the database", async () => {
 
     // await connection.close();
   });
-
-  it("should return a 200 response", async () => {
-
-  })
 })

@@ -1,10 +1,10 @@
 import { config } from 'dotenv';
 import logger from '../config/logger';
-import  { Request, Response, NextFunction} from 'express';
+import  { Request, Response } from 'express';
 
 config();
 
-export default (error, req: Request, res: Response, next: NextFunction) => {
+export default (error, req: Request, res: Response, ) => {
   const isProduction = process.env.NODE_ENV === 'production';
   let errorMessages = {};
 

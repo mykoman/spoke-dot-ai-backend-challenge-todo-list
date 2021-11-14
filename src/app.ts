@@ -1,4 +1,4 @@
-import express, {Application, Request, Response, NextFunction} from 'express';
+import express, {Application, Request, Response} from 'express';
 import { requestLogger } from './helpers/custom-logger';
 import { SuccessResponse } from './helpers/success-response';
 import errorHandler from './middlewares/errorHandler';
