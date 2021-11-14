@@ -1,12 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "es6",   
-    "module": "commonjs",                                
-    "rootDir": "./src",                                  
-    "moduleResolution": "node",                      
-    "outDir": "./dist",                                   
-    "esModuleInterop": true,   
-    "experimentalDecorators": true,   
-    "emitDecoratorMetadata": true                       
-  },
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "rootDir": "./src",
+        "moduleResolution": "node",
+        "outDir": "./dist",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "exclude": ["src/__tests__"]
 }
