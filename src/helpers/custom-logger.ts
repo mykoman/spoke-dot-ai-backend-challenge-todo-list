@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express'
 
 /**
  * @description Logs the request method and URL of requests made to application
@@ -6,7 +6,18 @@ import { Request, Response, NextFunction } from "express";
  * @param {obj} res response
  * @param {obj} next next
  */
-export const requestLogger = (req: Request, res: Response, next:NextFunction)=>{
-  console.info(req.method+ "  "+ req.protocol + '://' + req.get('host') + req.originalUrl);
-  next();
+export const requestLogger = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    console.info(
+        req.method +
+            '  ' +
+            req.protocol +
+            '://' +
+            req.get('host') +
+            req.originalUrl
+    )
+    next()
 }
