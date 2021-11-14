@@ -24,6 +24,7 @@ export class Todo extends BaseEntity {
     @Column({
         type: 'enum',
         enum: statusType,
+        default: 'created',
     })
     status: string
 

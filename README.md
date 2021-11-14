@@ -35,6 +35,9 @@ This is a RESTful API for a todo list. Part of an assessment for [Spoke.AI](http
 ```bash
 .
 ├── ...
+├── .husky                     # husky configuration file
+│   ├── pre-commit             # git pre-commit commands
+├── data                       # seed data
 ├── src                        # source files
 │   ├── __tests__              # folder containing automated tests
 │   ├── config                 # Configuration files, database etc
@@ -46,7 +49,11 @@ This is a RESTful API for a todo list. Part of an assessment for [Spoke.AI](http
 │   ├── app.ts                 # express application
 │   ├── index.ts               # entry file- server file
 ├── .env.example               # example environment file
+├── .eslintignore              # eslint ginore file
+├── .eslintrc.json             # eslint configuration file
 ├── .gitignore                 # gitginore file
+├── .prettierignore            # prettier ginore file
+├── .prettierrc.json           # prettier configuration file
 ├── jest.config.js             # jest configuration file
 ├── package.json               # application configuration
 ├── README.md                  # this file!!
@@ -91,6 +98,12 @@ The API response, to the best of my ability, is structure after JSEnd specificat
   }
 }
 ```
+
+## Project Status
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://go.postman.co/workspace/Spoke-API~5d9dc439-1266-4fb1-98f7-e0b3bdc4121c/collection/2438531-aba92f79-95a7-4990-937e-c13061faaee0)
+
+[![Deploy to Heroku Staging](https://www.vectorlogo.zone/logos/heroku/heroku-ar21.svg)](https://spoke-dot-ai.herokuapp.com/api/v1)
 
 ## Project Payload
 
