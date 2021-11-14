@@ -2,6 +2,7 @@ import { createConnection } from 'typeorm'
 import { config } from 'dotenv'
 import { Todo } from '../models/Todo'
 import { User } from '../models/User'
+import ApplicationError from '../helpers/error-response'
 
 config()
 
@@ -20,7 +21,10 @@ export const databaseConnection = async (databaseURL: string) => {
         })
         console.info('Connected to Postgres')
     } catch (error) {
-        console.error(error)
-        throw new Error('Unable to connect to db')
+        throw new ApplicationError(
+            500,
+            'Fetching of todo items from the database',
+            error
+        )
     }
 }
